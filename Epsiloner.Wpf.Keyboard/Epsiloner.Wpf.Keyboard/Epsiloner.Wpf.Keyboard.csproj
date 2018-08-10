@@ -31,6 +31,9 @@
     <DocumentationFile>bin\Release\Epsiloner.Wpf.Keyboard.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Epsiloner.Core, Version=1.0.2.0, Culture=neutral, PublicKeyToken=9da3ace43b578b82, processorArchitecture=MSIL">
+      <HintPath>..\packages\Epsiloner.Core.1.0.2\lib\netstandard2.0\Epsiloner.Core.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Epsiloner.Wpf.Keyboard.nuspec" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

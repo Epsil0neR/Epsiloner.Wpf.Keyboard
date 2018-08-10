@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows.Input;
+using Epsiloner.Helpers;
 
 namespace Epsiloner.Wpf.Keyboard
 {
@@ -32,8 +31,7 @@ namespace Epsiloner.Wpf.Keyboard
         /// <summary>Determines whether this <see cref="T:System.Windows.Input.KeyGesture" /> matches the input associated with the specified <see cref="T:System.Windows.Input.InputEventArgs" /> object.</summary>
         /// <param name="key">Pressed key.</param>
         /// <param name="modifiers">Modifier keys.</param>
-        /// <returns>
-        /// <see langword="true" /> if the event data matches this <see cref="Gesture" />; otherwise, <see langword="false" />.</returns>
+        /// <returns><see langword="true" /> if the event data matches this <see cref="Gesture" />; otherwise, <see langword="false" />.</returns>
         public bool Matches(Key key, ModifierKeys modifiers)
         {
             return IsDefinedKey(key)
@@ -46,7 +44,7 @@ namespace Epsiloner.Wpf.Keyboard
             if (key != Key.None)
                 return false;
 
-            var inp = GetFlags(modifiers);
+            var inp = modifiers.GetFlags();
             foreach (var m in inp)
             {
                 if (!Modifiers.HasFlag(m))
@@ -62,11 +60,20 @@ namespace Epsiloner.Wpf.Keyboard
             return false;
         }
 
+        /// <summary>
+        /// Checks if current gesture is valid.
+        /// </summary>
+        /// <returns></returns>
         public bool IsValid()
         {
             return Key != Key.None || Modifiers != ModifierKeys.None;
         }
 
+        /// <summary>
+        /// Validates specified gesture.
+        /// </summary>
+        /// <param name="gesture">Gesture to check.</param>
+        /// <returns></returns>
         public static bool IsValid(Gesture gesture)
         {
             if (gesture == null)
@@ -75,20 +82,13 @@ namespace Epsiloner.Wpf.Keyboard
             return gesture.IsValid();
         }
 
-        private static IEnumerable<Enum> GetFlags(Enum input)
-        {
-            foreach (Enum value in Enum.GetValues(input.GetType()))
-                if (input.HasFlag(value))
-                    yield return value;
-        }
-
         /// <inheritdoc />
         public override string ToString()
         {
             var rv = string.Empty;
             if (Modifiers != ModifierKeys.None)
             {
-                var modifiers = GetFlags(Modifiers).Where(x => (ModifierKeys)x != ModifierKeys.None);
+                var modifiers = Modifiers.GetFlags().Where(x => (ModifierKeys)x != ModifierKeys.None);
                 rv = string.Join("+", modifiers);
             }
 
