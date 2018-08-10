@@ -18,6 +18,7 @@ namespace Epsiloner.Wpf.Keyboard.KeyBinding
         /// <summary>
         /// Config name.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Can be thrown if <see cref="IsLocked"/> set to <see cref="bool.True"/>.</exception>
         public string Name
         {
             get { return _name; }
@@ -37,6 +38,7 @@ namespace Epsiloner.Wpf.Keyboard.KeyBinding
         /// <summary>
         /// Config description.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Can be thrown if <see cref="IsLocked"/> set to <see cref="bool.True"/>.</exception>
         public string Description
         {
             get { return _description; }
@@ -56,6 +58,7 @@ namespace Epsiloner.Wpf.Keyboard.KeyBinding
         /// <summary>
         /// Gesture associated with config.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Can be thrown if <see cref="IsLocked"/> set to <see cref="bool.True"/>.</exception>
         [TypeConverter(typeof(MultiKeyGestureConverter))]
         [ValueSerializer(typeof(MultiKeyGestureSerializer))]
         public KeyGesture Gesture
