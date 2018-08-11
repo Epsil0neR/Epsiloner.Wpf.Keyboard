@@ -19,7 +19,7 @@ namespace Epsiloner.Wpf.Keyboard
         /// <summary>
         /// Maximum delay between matching executing.
         /// </summary>
-		private static readonly TimeSpan MaxDelay = TimeSpan.FromSeconds(1);
+		private readonly TimeSpan _maxDelay = TimeSpan.FromSeconds(1);
         private DateTime _lastKeyPress = DateTime.MinValue;
         private IEnumerator<Gesture> _enumerator;
 
@@ -30,9 +30,18 @@ namespace Epsiloner.Wpf.Keyboard
         {
             if (gestures == null || !gestures.Any())
                 throw new ArgumentNullException(nameof(gestures));
+            var g = gestures.Where(Gesture.IsValid).ToList();
+            if (!g.Any())
+                throw new ArgumentException("Gestures must have at least 1 valid gesture.",nameof(gestures));
 
-            Gestures = gestures.Where(Gesture.IsValid).ToList();
+            Gestures = g;
             //TODO: Generate DisplayString
+        }
+
+        public MultiKeyGesture(IEnumerable<Gesture> gestures, TimeSpan maxDelayBetweenMatchCheck)
+            : this(gestures)
+        {
+            _maxDelay = maxDelayBetweenMatchCheck;
         }
 
         public override bool Matches(object targetElement, InputEventArgs inputEventArgs)
@@ -42,7 +51,7 @@ namespace Epsiloner.Wpf.Keyboard
                 return false;
 
             var now = DateTime.UtcNow;
-            if (_enumerator == null || (now - _lastKeyPress) > MaxDelay)
+            if (_enumerator == null || (now - _lastKeyPress) > _maxDelay)
             {
                 _enumerator?.Dispose();
                 _enumerator = Gestures.GetEnumerator();
@@ -54,6 +63,8 @@ namespace Epsiloner.Wpf.Keyboard
             var key = ProceedKey(e.Key);
             var rv = g.Matches(key, System.Windows.Input.Keyboard.Modifiers);
 
+            _lastKeyPress = now;
+
             //If pressed modifier and current gesture is not matching modier keys yet, then just swallow that key event.
             if (!rv && g.PartiallyMatches(key, System.Windows.Input.Keyboard.Modifiers))
             {
@@ -62,7 +73,6 @@ namespace Epsiloner.Wpf.Keyboard
             }
 
             // This line must be after proceeding modifier key
-            _lastKeyPress = now;
             var next = _enumerator.MoveNext();
 
             // Reset enumerator when not matching current gesture or finished
