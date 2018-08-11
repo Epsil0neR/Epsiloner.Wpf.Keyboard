@@ -1,0 +1,2 @@
+v1.0.0 - [TBD]
+	Using Epsiloner.Wpf.Core to save/load objects to/from file.

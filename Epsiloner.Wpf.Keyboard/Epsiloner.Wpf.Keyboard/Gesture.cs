@@ -39,6 +39,10 @@ namespace Epsiloner.Wpf.Keyboard
                 && Modifiers == modifiers;
         }
 
+        /// <summary>Determines whether this <see cref="T:System.Windows.Input.KeyGesture" /> partially matches the input associated with the specified <see cref="T:System.Windows.Input.InputEventArgs" /> object.</summary>
+        /// <param name="key">Pressed key.</param>
+        /// <param name="modifiers">Modifier keys.</param>
+        /// <returns><see langword="true" /> if the event data partially matches this <see cref="Gesture" />; otherwise, <see langword="false" />.</returns>
         public bool PartiallyMatches(Key key, ModifierKeys modifiers)
         {
             if (key != Key.None)
