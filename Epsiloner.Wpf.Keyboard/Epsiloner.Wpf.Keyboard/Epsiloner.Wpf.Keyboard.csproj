@@ -34,6 +34,9 @@
     <Reference Include="Epsiloner.Core, Version=1.0.2.0, Culture=neutral, PublicKeyToken=9da3ace43b578b82, processorArchitecture=MSIL">
       <HintPath>..\packages\Epsiloner.Core.1.0.2\lib\netstandard2.0\Epsiloner.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Epsiloner.Wpf.Core, Version=1.0.1.0, Culture=neutral, PublicKeyToken=9da3ace43b578b82, processorArchitecture=MSIL">
+      <HintPath>..\packages\Epsiloner.Wpf.Core.1.0.1\lib\net47\Epsiloner.Wpf.Core.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -59,8 +62,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Epsiloner.Wpf.Keyboard.nuspec" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

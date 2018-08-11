@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Security;
-using System.Xml;
-using System.Xaml;
-using XamlWriter = System.Windows.Markup.XamlWriter;
+using Epsiloner.Wpf.Utils;
 
 namespace Epsiloner.Wpf.Keyboard.KeyBinding
 {
@@ -18,7 +16,8 @@ namespace Epsiloner.Wpf.Keyboard.KeyBinding
         /// <param name="path">The file to which you want to write.
         /// Creates a file at the specified path and writes to it in XML 1.0 text syntax.
         /// The outputFileName must be a file system path.</param>
-        /// 
+        /// <remarks>Wrap for <see cref="XamlUtils.Save"/> method.</remarks>
+        ///
         /// <exception cref="ArgumentNullException">The url value is null or whitespace.</exception>
         /// <exception cref="ArgumentException">The path parameter contains invalid characters, is empty, or contains only white spaces.</exception>
         /// <exception cref="IOException">The network name is not known.</exception>\
@@ -32,17 +31,7 @@ namespace Epsiloner.Wpf.Keyboard.KeyBinding
         /// <exception cref="SecurityException">The application is not running in full trust.</exception>
         public void Save(string path)
         {
-            if (string.IsNullOrWhiteSpace(path))
-                throw new ArgumentNullException(nameof(path));
-
-            var dir = Path.GetDirectoryName(path);
-            Directory.CreateDirectory(dir);
-
-            XmlWriterSettings settings = new XmlWriterSettings { Indent = true };
-            using (XmlWriter writer = XmlWriter.Create(path, settings))
-            {
-                XamlWriter.Save(this, writer);
-            }
+            XamlUtils.Save(this, path);
         }
 
         /// <summary>
@@ -50,7 +39,8 @@ namespace Epsiloner.Wpf.Keyboard.KeyBinding
         /// </summary>
         /// <param name="path"></param>
         /// <returns>Loaded configs.</returns>
-        ///
+        /// <remarks>Wrap for <see cref="XamlUtils.Load{T}"/> method.</remarks>
+        /// 
         /// <exception cref="ArgumentException">path is a zero-length string, contains only white space,
         /// or contains one or more invalid characters as defined by System.IO.Path.InvalidPathChars.</exception>
         /// <exception cref="ArgumentNullException">path is null.</exception>
@@ -64,10 +54,7 @@ namespace Epsiloner.Wpf.Keyboard.KeyBinding
         /// <exception cref="IOException">An I/O error occurred while opening the file.</exception>
         public static Configs Load(string path)
         {
-            using (var reader = File.OpenRead(path))
-            {
-               return XamlServices.Load(reader) as Configs;
-            }
+            return XamlUtils.Load<Configs>(path);
         }
     }
 }
