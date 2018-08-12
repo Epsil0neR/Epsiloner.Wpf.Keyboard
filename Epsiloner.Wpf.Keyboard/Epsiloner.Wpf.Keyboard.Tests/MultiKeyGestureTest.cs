@@ -51,9 +51,9 @@ namespace Epsiloner.Wpf.Keyboard.Tests
             //NOTE: do not test modifiers, because they are taken from Keyboard.Modifiers static property.
             var g = new MultiKeyGesture(new Gesture[]
             {
+                new Gesture(Key.T),
                 new Gesture(Key.E),
                 new Gesture(Key.S),
-                new Gesture(Key.T),
                 new Gesture(Key.T),
             }, TimeSpan.FromSeconds(secMaxDelay));
 

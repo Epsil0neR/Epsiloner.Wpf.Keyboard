@@ -5,15 +5,16 @@ using System.Windows.Input;
 using System.Windows.Markup;
 
 namespace Epsiloner.Wpf.Keyboard.KeyBinding
-{  
+{
     /// <summary>
-     /// Represents configuration for single named key binding.
-     /// </summary>
+    /// Represents configuration for single named key binding.
+    /// </summary>
     public sealed class Config : INotifyPropertyChanged
     {
         private KeyGesture _gesture;
         private string _description;
         private string _name;
+        private bool _isHidden;
 
         /// <summary>
         /// Config name.
@@ -86,7 +87,21 @@ namespace Epsiloner.Wpf.Keyboard.KeyBinding
         /// <summary>
         /// Indicates if config is hidden from end-user.
         /// </summary>
-        public bool IsHidden { get; set; }
+        public bool IsHidden
+        {
+            get { return _isHidden; }
+            set
+            {
+                if (_isHidden == value)
+                    return;
+
+                if (IsLocked)
+                    throw new InvalidOperationException("Gesture is locked.");
+
+                _isHidden = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Locks config and prevents it from edits.
@@ -108,8 +123,8 @@ namespace Epsiloner.Wpf.Keyboard.KeyBinding
                 Name = Name,
                 Description = Description,
                 Gesture = Gesture,
+                IsHidden = IsHidden,
                 IsLocked = lockStatus,
-                IsHidden = IsHidden
             };
             return rv;
         }

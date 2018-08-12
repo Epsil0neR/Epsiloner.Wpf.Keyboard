@@ -3,10 +3,10 @@ using System.Windows.Input;
 
 namespace Epsiloner.Wpf.Keyboard.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class MultiKeyGestureSerializerTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void CanConvertToStringTest()
         {
             var s = new MultiKeyGestureSerializer();
@@ -22,7 +22,7 @@ namespace Epsiloner.Wpf.Keyboard.Tests
             Assert.IsTrue(s.CanConvertToString(g, null));
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ConvertToStringTest()
         {
             var s = new MultiKeyGestureSerializer();

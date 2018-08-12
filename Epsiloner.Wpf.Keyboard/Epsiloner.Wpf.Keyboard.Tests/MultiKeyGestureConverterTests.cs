@@ -3,10 +3,10 @@ using System;
 
 namespace Epsiloner.Wpf.Keyboard.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class MultiKeyGestureConverterTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void MultiKeyGestureConverter_constructor()
         {
             var c = new MultiKeyGestureConverter();
@@ -17,7 +17,7 @@ namespace Epsiloner.Wpf.Keyboard.Tests
         [DataRow(false, typeof(int))]
         [DataRow(false, typeof(Gesture))]
         [DataRow(false, typeof(MultiKeyGesture))]
-        [TestMethod()]
+        [TestMethod]
         public void CanConvertFromTest(bool expected, Type type)
         {
             var c = new MultiKeyGestureConverter();
@@ -32,7 +32,7 @@ namespace Epsiloner.Wpf.Keyboard.Tests
         [DataRow("control t e s t", "ctrl t e s t")]
         [DataRow("control t e s t", "control t e s t")]
         [DataRow("t e s t", "t e s t")]
-        [TestMethod()]
+        [TestMethod]
         public void ConvertFromTest(string expected, string input)
         {
             var c = new MultiKeyGestureConverter();
