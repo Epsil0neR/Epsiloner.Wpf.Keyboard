@@ -38,10 +38,15 @@ namespace Epsiloner.Wpf.Keyboard
             //TODO: Generate DisplayString
         }
 
-        public MultiKeyGesture(IEnumerable<Gesture> gestures, TimeSpan maxDelayBetweenMatchCheck)
+        /// <summary>
+        /// Initializes <see cref="MultiKeyGesture"/> with custom maximum delay between Matches invokinig to reset gesture to initial state.
+        /// </summary>
+        /// <param name="gestures"></param>
+        /// <param name="maxDelay"></param>
+        public MultiKeyGesture(IEnumerable<Gesture> gestures, TimeSpan maxDelay)
             : this(gestures)
         {
-            _maxDelay = maxDelayBetweenMatchCheck;
+            _maxDelay = maxDelay;
         }
 
         public override bool Matches(object targetElement, InputEventArgs inputEventArgs)
