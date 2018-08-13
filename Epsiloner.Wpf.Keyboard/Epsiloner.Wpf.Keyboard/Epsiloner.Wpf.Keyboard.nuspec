@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <title>$title$</title>
     <authors>Veniamin Lytkin @ Epsil0neR</authors>
     <owners>Epsil0neR</owners>
@@ -11,10 +11,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Provides manager for keybinding where key gesture can be configured by user.</description>
     <releaseNotes>
-      Added behaviors for gestures:
-      GestureToCommand
-      MultiGestureToCommand
-      GestureFromManagerToCommand
+      Fixed bug with GestureFromManagerToCommand when manager updates only gesture.
+      Added samples to GitHub
     </releaseNotes>
     <copyright>Copyright © Epsil0neR 2018</copyright>
     <tags>Epsiloner Wpf Keyboard hotkeys keybinding</tags>
