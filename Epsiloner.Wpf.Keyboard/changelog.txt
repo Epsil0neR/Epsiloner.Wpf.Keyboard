@@ -1,3 +1,8 @@
+v1.0.2 - 2018-08-13
+	Added behaviors for gestures:
+		GestureToCommand
+		MultiGestureToCommand
+		GestureFromManagerToCommand
 v1.0.1 - 2018-08-13
 	[KeyBinding.Manager] .ToEdit() now returns all configs instead of not hidden.
 	[KeyBinding.Configs] Using Epsiloner.Wpf.Core to save/load objects to/from file.

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <title>$title$</title>
     <authors>Veniamin Lytkin @ Epsil0neR</authors>
     <owners>Epsil0neR</owners>
@@ -11,10 +11,10 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Provides manager for keybinding where key gesture can be configured by user.</description>
     <releaseNotes>
-      [KeyBinding.Manager] .ToEdit() now returns all configs instead of not hidden.
-      [KeyBinding.Configs] Using Epsiloner.Wpf.Core to save/load objects to/from file.
-      [MultiKeyGesture] Fixed bug with not setting last key press when there are multiple gestures.
-      [MultiKeyGesture] Added check if gestures provided to constructor has valid items.
+      Added behaviors for gestures:
+      GestureToCommand
+      MultiGestureToCommand
+      GestureFromManagerToCommand
     </releaseNotes>
     <copyright>Copyright © Epsil0neR 2018</copyright>
     <tags>Epsiloner Wpf Keyboard hotkeys keybinding</tags>
