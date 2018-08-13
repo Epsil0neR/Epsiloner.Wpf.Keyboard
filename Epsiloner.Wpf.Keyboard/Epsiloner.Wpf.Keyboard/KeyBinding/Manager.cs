@@ -56,7 +56,7 @@ namespace Epsiloner.Wpf.Keyboard.KeyBinding
         public Configs ToEdit()
         {
             var rv = new Configs();
-            rv.AddRange(Configs.Where(x => !x.IsHidden).Select(x => x.Clone(false)));
+            rv.AddRange(Configs.Select(x => x.Clone(false)));
             return rv;
         }
 
@@ -91,6 +91,7 @@ namespace Epsiloner.Wpf.Keyboard.KeyBinding
                         var ind = Configs.IndexOf(c);
                         var clone = c.Clone(false);
                         clone.Gesture = config.Gesture;
+                        clone.Lock();
 
                         Configs[ind] = clone;
                     }

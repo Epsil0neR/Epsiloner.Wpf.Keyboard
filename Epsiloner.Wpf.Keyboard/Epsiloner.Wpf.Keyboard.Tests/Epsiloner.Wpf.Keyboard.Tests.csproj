@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="GestureTests.cs" />
     <Compile Include="KeyBinding\ConfigTests.cs" />
+    <Compile Include="KeyBinding\ManagerTests.cs" />
     <Compile Include="MultiKeyGestureConverterTests.cs" />
     <Compile Include="MultiKeyGestureSerializerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

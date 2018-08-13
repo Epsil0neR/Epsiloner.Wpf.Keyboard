@@ -8,7 +8,7 @@ namespace Epsiloner.Wpf.Keyboard.KeyBinding.Tests
     public class ConfigTests
     {
         [TestMethod]
-        public void Config()
+        public void ConfigTest()
         {
             var c = new Config();
             Assert.IsNotNull(c);
