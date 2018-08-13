@@ -38,7 +38,7 @@ namespace Epsiloner.Wpf.Keyboard.Behaviors
 
         private void ManagerOnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            BindingOperations.GetBindingExpression(this, GestureProperty)?.UpdateTarget();
+            BindingOperations.GetBindingExpressionBase(this, GestureProperty)?.UpdateTarget();
         }
 
         /// <summary>
