@@ -5,10 +5,19 @@ using Epsiloner.Wpf.Keyboard.KeyBinding;
 
 namespace Epsiloner.Wpf.Keyboard.Behaviors
 {
+    /// <summary>
+    /// Binds command to gesture from <see cref="Config"/> in <see cref="KeyBinding.Manager"/>.
+    /// </summary>
     public class GestureFromManagerToCommand : GestureToCommand
     {
+        /// <summary>
+        /// Key binding configs manager.
+        /// </summary>
         public static DependencyProperty ManagerProperty = DependencyProperty.Register(nameof(Manager), typeof(Manager), typeof(GestureFromManagerToCommand));
 
+        /// <summary>
+        /// Key binding configs manager.
+        /// </summary>
         public Manager Manager
         {
             get { return (Manager)GetValue(ManagerProperty) ?? Manager.Default; }
@@ -29,8 +38,14 @@ namespace Epsiloner.Wpf.Keyboard.Behaviors
             BindingOperations.SetBinding(this, GestureProperty, b);
         }
 
+        /// <summary>
+        /// Name of <see cref="Config"/>.
+        /// </summary>
         public static DependencyProperty ConfigNameProperty = DependencyProperty.Register(nameof(ConfigName), typeof(string), typeof(GestureFromManagerToCommand));
 
+        /// <summary>
+        /// Name of <see cref="Config"/>.
+        /// </summary>
         public string ConfigName
         {
             get { return (string)GetValue(ConfigNameProperty); }

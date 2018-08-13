@@ -1,5 +1,8 @@
 ﻿namespace Epsiloner.Wpf.Keyboard.Behaviors
 {
+    /// <summary>
+    /// Indicates when gesture will hook input.
+    /// </summary>
     public enum GestureToCommandMode
     {
         /// <summary>

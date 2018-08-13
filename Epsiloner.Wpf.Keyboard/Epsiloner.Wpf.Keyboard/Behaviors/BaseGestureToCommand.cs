@@ -8,13 +8,40 @@ using System.Windows.Interactivity;
 
 namespace Epsiloner.Wpf.Keyboard.Behaviors
 {
+    /// <summary>
+    /// Base gesture to command class.
+    /// Gives ability to bind gestures, disable/enable gesture, choose when gesture hooks input, execute command asyncronously.
+    /// </summary>
     public abstract class BaseGestureToCommand : Behavior<UIElement>
     {
+        /// <summary>
+        /// Associated with gesture command.
+        /// </summary>
         public static DependencyProperty CommandProperty = DependencyProperty.Register(nameof(Command), typeof(ICommand), typeof(BaseGestureToCommand));
+
+        /// <summary>
+        /// Parameter to command that is passed when <see cref="CommandProperty"/> executes.
+        /// </summary>
         public static DependencyProperty CommandParameterProperty = DependencyProperty.Register(nameof(CommandParameter), typeof(object), typeof(BaseGestureToCommand));
+        
+        /// <summary>
+        /// Indicates if gesture hooks input and invokes <see cref="CommandProperty"/>.
+        /// </summary>
         public static DependencyProperty IsEnabledProperty = DependencyProperty.Register(nameof(IsEnabled), typeof(bool), typeof(BaseGestureToCommand), new PropertyMetadata(true));
+
+        /// <summary>
+        /// Indicates when gesture will hook input - before or after control.
+        /// </summary>
         public static DependencyProperty ModeProperty = DependencyProperty.Register(nameof(Mode), typeof(GestureToCommandMode), typeof(BaseGestureToCommand), new PropertyMetadata(GestureToCommandMode.Before, ModePropertyChangedCallback));
+
+        /// <summary>
+        /// Indicates if associated <see cref="CommandProperty"/> will be executed syncronously or asyncronously.
+        /// </summary>
         public static DependencyProperty ExecuteAsynchronouslyProperty = DependencyProperty.Register(nameof(ExecuteAsynchronously), typeof(bool), typeof(BaseGestureToCommand), new PropertyMetadata(false));
+        
+        /// <summary>
+        /// Indicates if gesture will hook already handled input.
+        /// </summary>
         public static DependencyProperty IgnoreHandledProperty = DependencyProperty.Register(nameof(IgnoreHandled), typeof(bool), typeof(BaseGestureToCommand), new PropertyMetadata(false));
 
         private static void ModePropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -33,38 +60,59 @@ namespace Epsiloner.Wpf.Keyboard.Behaviors
         private readonly RoutedEventHandler _routedEventHandler;
         private readonly TimeSpan _partiallyTimespan;
 
+        /// <summary>
+        /// Gets actual getsure.
+        /// </summary>
         protected abstract KeyGesture GestureValue { get; }
 
+        /// <summary>
+        /// Indicates if gesture hooks input and invokes <see cref="Command"/>.
+        /// </summary>
         public bool IsEnabled
         {
             get { return (bool)GetValue(IsEnabledProperty); }
             set { SetValue(IsEnabledProperty, value); }
         }
 
+        /// <summary>
+        /// Associated with gesture command.
+        /// </summary>
         public ICommand Command
         {
             get { return (ICommand)GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
 
+        /// <summary>
+        /// Parameter to command that is passed when <see cref="Command"/> executes.
+        /// </summary>
         public object CommandParameter
         {
             get { return GetValue(CommandParameterProperty); }
             set { SetValue(CommandParameterProperty, value); }
         }
 
+        /// <summary>
+        /// Indicates when gesture will hook input - before or after control.
+        /// </summary>
         public GestureToCommandMode Mode
         {
             get { return (GestureToCommandMode)GetValue(ModeProperty); }
             set { SetValue(ModeProperty, value); }
         }
 
+        /// <summary>
+        /// Indicates if associated <see cref="Command"/> will be executed syncronously or asyncronously.
+        /// </summary>
         public bool ExecuteAsynchronously
         {
             get { return (bool)GetValue(ExecuteAsynchronouslyProperty); }
             set { SetValue(ExecuteAsynchronouslyProperty, value); }
         }
 
+        /// <summary>
+        /// Indicates if gesture will hook already handled input.
+        /// </summary>
         public bool IgnoreHandled
         {
             get { return (bool)GetValue(IgnoreHandledProperty); }
@@ -83,6 +131,7 @@ namespace Epsiloner.Wpf.Keyboard.Behaviors
         }
 
 
+        /// <inheritdoc />
         protected override void OnAttached()
         {
             base.OnAttached();
@@ -111,6 +160,7 @@ namespace Epsiloner.Wpf.Keyboard.Behaviors
             AssociatedObject.RemoveHandler(UIElement.KeyDownEvent, _routedEventHandler);
         }
 
+        /// <inheritdoc />
         protected override void OnDetaching()
         {
             _attached = false;
