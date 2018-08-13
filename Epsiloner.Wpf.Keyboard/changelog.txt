@@ -1,4 +1,5 @@
-v1.0.0 - [TBD]
+v1.0.1 - 2018-08-13
+	[KeyBinding.Manager] .ToEdit() now returns all configs instead of not hidden.
 	[KeyBinding.Configs] Using Epsiloner.Wpf.Core to save/load objects to/from file.
 	[MultiKeyGesture] Fixed bug with not setting last key press when there are multiple gestures.
 	[MultiKeyGesture] Added check if gestures provided to constructor has valid items.
