@@ -16,13 +16,21 @@
     </Grid>
 
     <i:Interaction.Behaviors>
+        <!--There are 2 ways to bind to gesture from manager: -->
+        <!--Way 1: use GestureFromManagerToCommand where you fill these properties -->
         <b:GestureFromManagerToCommand 
             Manager="{Binding Manager, Mode=OneWay}" 
             Command="{Binding SayHelloCommand, Mode=OneWay}"
             ConfigName="SayHello"/>
+        
+        <!--Way 2: Manually write binding to gesture.-->
+        <b:GestureToCommand Gesture="{Binding Manager[SayHello2], Mode=OneWay}" Command="{Binding SayHelloCommand}" />
+        
         <b:GestureFromManagerToCommand 
             Manager="{Binding Manager, Mode=OneWay}" 
             Command="{Binding ExitCommand, Mode=OneWay}"
             ConfigName="Global.Exit"/>
+        
+
     </i:Interaction.Behaviors>
 </Window>

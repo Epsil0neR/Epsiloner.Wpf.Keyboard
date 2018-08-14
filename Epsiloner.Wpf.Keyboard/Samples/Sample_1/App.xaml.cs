@@ -21,6 +21,13 @@ namespace Sample_1
                     Description = "Says hello to user",
                     Gesture = new KeyGesture(Key.F1)
                 },
+
+                new Config()
+                {
+                    Name = "SayHello2",
+                    Description = "Says hello to user",
+                    Gesture = new KeyGesture(Key.F10)
+                },
                 new Config()
                 {
                     Name = "Global.Exit",
