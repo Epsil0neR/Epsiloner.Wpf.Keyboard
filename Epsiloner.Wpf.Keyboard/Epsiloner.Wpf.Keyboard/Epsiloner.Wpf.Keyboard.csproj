@@ -1,49 +1,64 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{33035DA6-3DAF-49E6-B3F7-B96EE569688B}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Epsiloner.Wpf.Keyboard</RootNamespace>
+    <TargetFrameworks>net45;net46;net461;net47;net471</TargetFrameworks>
+    <Authors>Veniamin Lytkin @ Epsil0neR</Authors>
+    <Company>https://github.com/Epsil0neR/Epsiloner.Wpf.Keyboard</Company>
+    <Copyright>Copyright © Epsil0neR 2018</Copyright>
+
     <AssemblyName>Epsiloner.Wpf.Keyboard</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <AssemblyTitle>$(AssemblyName)</AssemblyTitle>
+    <Description>Provides manager for keybinding where key gesture can be configured by user.</Description>
+
+    <Version>1.0.4</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
+
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Epsiloner libraries.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <!-- NuGet properties -->
+  <PropertyGroup>
+    <PackageId>$(AssemblyName)</PackageId>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/Epsil0neR/Epsiloner.Wpf.Keyboard/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Keyboard</PackageProjectUrl>
+    <PackageReleaseNotes>
+      Added support to .NET v4.5, v4.6
+      Fixed bug with GestureFromManagerToCommand when manager updates only gesture.
+      Added samples to GitHub
+    </PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>Epsiloner Wpf Keyboard hotkeys keybinding key shortcut</PackageTags>
+    <PackageVersion>$(Version)</PackageVersion>
+    <PackageDescription>$(Description)</PackageDescription>
+    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Epsiloner.Wpf.Keyboard.xml</DocumentationFile>
+
+  <!-- Documentation -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Epsiloner.Core.xml</DocumentationFile>
   </PropertyGroup>
+
+  <!-- Exclude misc files -->
   <ItemGroup>
-    <Reference Include="Epsiloner.Core, Version=1.0.2.0, Culture=neutral, PublicKeyToken=9da3ace43b578b82, processorArchitecture=MSIL">
-      <HintPath>..\packages\Epsiloner.Core.1.0.2\lib\netstandard2.0\Epsiloner.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Epsiloner.Wpf.Core, Version=1.0.1.0, Culture=neutral, PublicKeyToken=9da3ace43b578b82, processorArchitecture=MSIL">
-      <HintPath>..\packages\Epsiloner.Wpf.Core.1.0.1\lib\net47\Epsiloner.Wpf.Core.dll</HintPath>
-    </Reference>
+    <None Remove="*.pfx" />
+    <None Remove="*.nupkg" />
+    <None Remove="*.cmd" />
+    <None Remove="packages.config" />
+  </ItemGroup>
+
+  <!-- NuGet dependancies -->
+  <ItemGroup>
+    <PackageReference Include="Epsiloner.Core" Version="1.0.7" />
+    <PackageReference Include="Epsiloner.Wpf.Core" Version="1.0.4" />
+  </ItemGroup>
+
+  <!-- References -->
+  <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Expression.Blend.Sdk.1.0.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,29 +68,4 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Behaviors\BaseGestureToCommand.cs" />
-    <Compile Include="Converters\ConfigNameAndManagerToGestureMultiConverter.cs" />
-    <Compile Include="Behaviors\GestureFromManagerToCommand.cs" />
-    <Compile Include="Behaviors\GestureToCommand.cs" />
-    <Compile Include="Behaviors\GestureToCommandMode.cs" />
-    <Compile Include="Behaviors\MultiGestureToCommand.cs" />
-    <Compile Include="Gesture.cs" />
-    <Compile Include="KeyBinding\Config.cs" />
-    <Compile Include="KeyBinding\Configs.cs" />
-    <Compile Include="KeyBinding\Manager.cs" />
-    <Compile Include="KeyBinding\ManagerUpdateMode.cs" />
-    <Compile Include="MultiKeyGesture.cs" />
-    <Compile Include="MultiKeyGestureConverter.cs" />
-    <Compile Include="MultiKeyGestureSerializer.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Epsiloner.Wpf.Keyboard.nuspec" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
