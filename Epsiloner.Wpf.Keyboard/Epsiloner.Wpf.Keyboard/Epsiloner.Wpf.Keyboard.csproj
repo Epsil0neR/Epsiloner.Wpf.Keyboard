@@ -23,6 +23,9 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/Epsil0neR/Epsiloner.Wpf.Keyboard/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Epsil0neR/Epsiloner.Wpf.Keyboard</PackageProjectUrl>
     <PackageReleaseNotes>
+      v1.0.5
+      Fixed documentation file.
+      v1.0.4
       Added support to .NET v4.5, v4.6
       Fixed bug with GestureFromManagerToCommand when manager updates only gesture.
       Added samples to GitHub
@@ -36,7 +39,7 @@
 
   <!-- Documentation -->
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Epsiloner.Core.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
   <!-- Exclude misc files -->
