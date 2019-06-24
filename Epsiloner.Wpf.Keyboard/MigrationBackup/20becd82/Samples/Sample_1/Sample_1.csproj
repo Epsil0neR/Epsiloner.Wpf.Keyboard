@@ -34,8 +34,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Epsiloner.Core, Version=1.0.11.0, Culture=neutral, PublicKeyToken=9da3ace43b578b82, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\NuGet.packages\Global\Epsiloner.Core.1.0.11\lib\net461\Epsiloner.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Epsiloner.Wpf.Core, Version=1.0.7.0, Culture=neutral, PublicKeyToken=9da3ace43b578b82, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\NuGet.packages\Global\Epsiloner.Wpf.Core.1.0.7\lib\net47\Epsiloner.Wpf.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Epsiloner.Wpf.Keyboard, Version=1.0.4.0, Culture=neutral, PublicKeyToken=9da3ace43b578b82, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\NuGet.packages\Global\Epsiloner.Wpf.Keyboard.1.0.4\lib\net47\Epsiloner.Wpf.Keyboard.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Expression.Blend.Sdk.1.0.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -87,6 +99,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,17 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Epsiloner.Core">
-      <Version>1.0.11</Version>
-    </PackageReference>
-    <PackageReference Include="Epsiloner.Wpf.Core">
-      <Version>1.0.7</Version>
-    </PackageReference>
-    <PackageReference Include="Epsiloner.Wpf.Keyboard">
-      <Version>1.0.4</Version>
-    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

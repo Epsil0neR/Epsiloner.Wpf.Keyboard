@@ -52,8 +52,8 @@
 
   <!-- NuGet dependancies -->
   <ItemGroup>
-    <PackageReference Include="Epsiloner.Core" Version="1.0.7" />
-    <PackageReference Include="Epsiloner.Wpf.Core" Version="1.0.4" />
+    <PackageReference Include="Epsiloner.Core" Version="1.0.11" />
+    <PackageReference Include="Epsiloner.Wpf.Core" Version="1.0.7" />
   </ItemGroup>
 
   <!-- References -->
